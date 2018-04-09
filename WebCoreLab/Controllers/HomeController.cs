@@ -83,7 +83,7 @@ namespace WebCoreLab.Controllers
         {
             CurUser = null;
 
-            return View("Index");
+            return Redirect("Index");
         }
 
         [HttpPost]

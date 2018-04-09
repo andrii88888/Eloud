@@ -1,0 +1,26 @@
+﻿@using WebCoreLab.Models
+@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row">
+    <div class="col-md-offset-5 col-md-3">
+        <div class="form-login">
+            <h4>Welcome back</h4>
+            @using (Html.BeginForm("login", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.TextBoxFor(x => x.Email, null, new { @class = "form-control", @placeholder = "email" })
+                <br />
+                @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "password" })
+                <br />
+                <div class="wrapper">
+                    <span class="group-btn">
+                        <input class="btn btn-primary btn-md" type="submit" value="Login" />
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

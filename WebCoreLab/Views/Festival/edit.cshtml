@@ -1,0 +1,75 @@
+﻿@using WebCoreLab.Domain
+@model Festival
+@{
+    ViewData["Title"] = "edit";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".datepicker").datepicker(
+            {
+                dateFormat: 'dd-mm-yy'
+            }
+        );
+    })
+</script>
+
+<div id="edit-profile" class="tab-pane">
+    <section class="panel panel-primary">
+        <div class="panel-heading">Festival</div>
+        <div class="panel-body bio-graph-info">
+            @using (Html.BeginForm("edit", "Festival", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.HiddenFor(x => x.Id)
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Name</label>
+                    <div class="col-lg-6">
+                        @Html.TextBoxFor(x => x.Name, null, new { @class = "form-control", @placeholder = "Name" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Country</label>
+                    <div class="col-lg-6">
+                        @Html.TextBoxFor(x => x.Country, null, new { @class = "form-control", @placeholder = "Country" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">City</label>
+                    <div class="col-lg-6">
+                        @Html.TextBoxFor(x => x.City, new { @class = "form-control", @placeholder = "City" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">StartDate</label>
+                    <div class="col-lg-6">
+                        @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control datepicker", @placeholder = "StartDate" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">EndDate</label>
+                    <div class="col-lg-6">
+                        @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control datepicker", @placeholder = "EndDate" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Description</label>
+                    <div class="col-lg-6">
+                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @placeholder = "Description" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">ImageLink</label>
+                    <div class="col-lg-6">
+                        @Html.TextBoxFor(x => x.ImageLink, new { @class = "form-control", @placeholder = "ImageLink" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("list", "Festival")'">Back</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</div>

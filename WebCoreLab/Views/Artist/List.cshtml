@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WebCoreLab.Domain.Artist>
 
 @{
-    ViewData["Title"] = "Artists";
+    ViewData["Title"] = "List";
 }
 
 
@@ -14,9 +14,7 @@
             <th>
                 Country
             </th>
-            <th>
-                Description
-            </th>
+           
             <th></th>
         </tr>
     </thead>
@@ -29,9 +27,6 @@
                 </td>
                 <td>
                     @item.Country
-                </td>
-                <td>
-                    @item.Description
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

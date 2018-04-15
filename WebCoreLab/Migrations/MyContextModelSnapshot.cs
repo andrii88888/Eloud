@@ -29,6 +29,8 @@ namespace WebCoreLab.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("ImageLink");
+
                     b.Property<string>("Name");
 
                     b.HasKey("ID");

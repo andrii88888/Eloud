@@ -11,6 +11,8 @@ namespace WebCoreLab.Domain
         public string Name { get; set; }
         public string Country { get; set; }
         public string Description { get; set; }
+        public virtual string ImageLink { get; set; }
 
+        public ICollection<LineUp> LineUps { get; set; }
     }
 }

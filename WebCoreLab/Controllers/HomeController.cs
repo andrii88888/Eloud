@@ -58,12 +58,7 @@ namespace WebCoreLab.Controllers
             return View();
         }
 
-        public IActionResult Artist()
-        {
-            ViewData["Message"] = "Artists";
-
-            return View(context.Artists.ToList());
-        }
+       
 
         public IActionResult Error()
         {

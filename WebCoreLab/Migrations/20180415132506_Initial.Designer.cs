@@ -11,7 +11,7 @@ using WebCoreLab.Domain.Context;
 namespace WebCoreLab.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20180403080557_Initial")]
+    [Migration("20180415132506_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,6 +29,8 @@ namespace WebCoreLab.Migrations
                     b.Property<string>("Country");
 
                     b.Property<string>("Description");
+
+                    b.Property<string>("ImageLink");
 
                     b.Property<string>("Name");
 

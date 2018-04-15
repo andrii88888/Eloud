@@ -27,7 +27,7 @@ namespace WebCoreLab.Domain.Context
                 .WithMany(x => x.Users);
 
             modelBuilder.Entity<Artist>().ToTable("Artist");
-
+            modelBuilder.Entity<LineUp>().ToTable("LineUp");
             //Database.SetInitializer<StoreContext>(null);
             //base.OnModelCreating(modelBuilder);
             // modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

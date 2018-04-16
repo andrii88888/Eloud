@@ -8,7 +8,7 @@ namespace WebCoreLab.Domain
     public class LineUp
     {
         public int LineUpID { get; set; }
-        public int FestivalID { get; set; }
+        public long FestivalID { get; set; }
         public int ArtistID { get; set; }
 
         public Festival Festival { get; set; }

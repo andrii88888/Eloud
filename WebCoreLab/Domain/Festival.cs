@@ -15,5 +15,6 @@ namespace WebCoreLab.Domain
         public virtual DateTime EndDate { get; set; }
         public virtual string Description { get; set; }
         public virtual string ImageLink { get; set; }
+        public ICollection<LineUp> LineUps { get; set; }
     }
 }

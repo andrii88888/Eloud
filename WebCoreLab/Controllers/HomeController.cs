@@ -74,11 +74,49 @@ namespace WebCoreLab.Controllers
         }
 
         [HttpGet]
+        public IActionResult register()
+        {
+            LoginModel model = new LoginModel();
+
+            return View(model);
+        }
+
+        [HttpGet]
         public IActionResult logout()
         {
             CurUser = null;
 
             return Redirect("Index");
+        }
+
+        [HttpPost]
+        public IActionResult register(LoginModel model)
+        {
+            if (!String.IsNullOrEmpty(model.Email) && !String.IsNullOrEmpty(model.Password))
+            {
+                Domain.User user = new Domain.User();
+                user.Email = model.Email;
+                user.Password = model.Password;
+                Role role = new Role()
+                {
+                    Name = "User",
+                    Code = "USER"
+                };
+                user.Role = role;
+                if (user.Id == 0)
+                    context.Users.Add(user);
+
+                context.SaveChanges();
+
+                //if (user != null && user.Password == model.Password)
+                //{
+                //    CurUser = user;
+
+                //    return RedirectToAction("Index");
+                //}
+            }
+            return RedirectToAction("Login");
+            //return View();
         }
 
         [HttpPost]

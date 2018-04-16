@@ -1,0 +1,49 @@
+﻿@model WebCoreLab.Domain.Artist
+@{
+    ViewData["Title"] = "Details";
+}
+<dt>
+    @Html.DisplayNameFor(model => model.Name)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Name)
+</dd>
+<dt>
+    @Html.DisplayNameFor(model => model.Country)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Country)
+</dd>
+<dt>
+    @Html.DisplayNameFor(model => model.Description)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Description)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.LineUps)
+</dt>
+<dd>
+    <table class="table">
+        <tr>
+            <th>Festival</th>
+            <th>Start</th>
+            <th>End</th>
+        </tr>
+        @foreach (var item in Model.LineUps)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Festival.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Festival.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Festival.EndDate)
+            </td>
+        </tr>
+        }
+    </table>
+</dd>

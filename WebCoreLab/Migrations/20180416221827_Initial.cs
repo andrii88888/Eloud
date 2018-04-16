@@ -59,6 +59,32 @@ namespace WebCoreLab.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "LineUp",
+                columns: table => new
+                {
+                    LineUpID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ArtistID = table.Column<int>(nullable: false),
+                    FestivalID = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LineUp", x => x.LineUpID);
+                    table.ForeignKey(
+                        name: "FK_LineUp_Artist_ArtistID",
+                        column: x => x.ArtistID,
+                        principalTable: "Artist",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_LineUp_Festivals_FestivalID",
+                        column: x => x.FestivalID,
+                        principalTable: "Festivals",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -80,6 +106,16 @@ namespace WebCoreLab.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_LineUp_ArtistID",
+                table: "LineUp",
+                column: "ArtistID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LineUp_FestivalID",
+                table: "LineUp",
+                column: "FestivalID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_User_RoleId",
                 table: "User",
                 column: "RoleId");
@@ -88,13 +124,16 @@ namespace WebCoreLab.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "LineUp");
+
+            migrationBuilder.DropTable(
+                name: "User");
+
+            migrationBuilder.DropTable(
                 name: "Artist");
 
             migrationBuilder.DropTable(
                 name: "Festivals");
-
-            migrationBuilder.DropTable(
-                name: "User");
 
             migrationBuilder.DropTable(
                 name: "Roles");

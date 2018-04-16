@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebCoreLab.Domain;
 using WebCoreLab.Domain.Context;
 
 namespace WebCoreLab.Controllers
 {
-    [RedirectFilterNotAdmin]
+    
     public class FestivalController : BaseController
     {
         private MyContext context { get; set; }
@@ -27,6 +28,26 @@ namespace WebCoreLab.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Details(int? id)
+        {
+            ViewData["Message"] = "list";
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var festival = await context.Festivals.Include(s => s.LineUps).AsNoTracking().SingleOrDefaultAsync(m => m.Id == id);
+
+            if (festival == null)
+            {
+                return NotFound();
+            }
+
+            return View(festival);
+        }
+
+        [RedirectFilterNotAdmin]
+        [HttpGet]
         public IActionResult edit(long? id)
         {
             Festival festival = id.HasValue ? context.Festivals.FirstOrDefault(x => x.Id == id.Value) :
@@ -35,6 +56,7 @@ namespace WebCoreLab.Controllers
             return View(festival);
         }
 
+        [RedirectFilterNotAdmin]
         [HttpPost]
         public ActionResult edit(Festival model)
         {
@@ -75,6 +97,8 @@ namespace WebCoreLab.Controllers
             return View(model);
         }
 
+
+        [RedirectFilterNotAdmin]
         [HttpGet]
         public ActionResult remove(Festival model)
         {

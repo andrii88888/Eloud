@@ -11,7 +11,7 @@ using WebCoreLab.Domain.Context;
 namespace WebCoreLab.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20180415132506_Initial")]
+    [Migration("20180416221827_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,6 +63,24 @@ namespace WebCoreLab.Migrations
                     b.ToTable("Festivals");
                 });
 
+            modelBuilder.Entity("WebCoreLab.Domain.LineUp", b =>
+                {
+                    b.Property<int>("LineUpID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ArtistID");
+
+                    b.Property<long>("FestivalID");
+
+                    b.HasKey("LineUpID");
+
+                    b.HasIndex("ArtistID");
+
+                    b.HasIndex("FestivalID");
+
+                    b.ToTable("LineUp");
+                });
+
             modelBuilder.Entity("WebCoreLab.Domain.Role", b =>
                 {
                     b.Property<long>("Id")
@@ -93,6 +111,19 @@ namespace WebCoreLab.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("WebCoreLab.Domain.LineUp", b =>
+                {
+                    b.HasOne("WebCoreLab.Domain.Artist", "Artist")
+                        .WithMany("LineUps")
+                        .HasForeignKey("ArtistID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WebCoreLab.Domain.Festival", "Festival")
+                        .WithMany("LineUps")
+                        .HasForeignKey("FestivalID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("WebCoreLab.Domain.User", b =>

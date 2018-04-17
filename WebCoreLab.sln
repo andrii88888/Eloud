@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCoreLab", "WebCoreLab\WebCoreLab.csproj", "{FFB68895-1FA4-41A8-8C33-706434EE714D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCoreLab", "WebCoreLab\WebCoreLab.csproj", "{FFB68895-1FA4-41A8-8C33-706434EE714D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FestivalsXUnitTest", "FestivalsXUnitTest\FestivalsXUnitTest.csproj", "{F6EAE914-30A5-4CE3-ACF6-BA6EE2EADBF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FFB68895-1FA4-41A8-8C33-706434EE714D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFB68895-1FA4-41A8-8C33-706434EE714D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFB68895-1FA4-41A8-8C33-706434EE714D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6EAE914-30A5-4CE3-ACF6-BA6EE2EADBF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6EAE914-30A5-4CE3-ACF6-BA6EE2EADBF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6EAE914-30A5-4CE3-ACF6-BA6EE2EADBF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6EAE914-30A5-4CE3-ACF6-BA6EE2EADBF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

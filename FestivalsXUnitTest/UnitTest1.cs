@@ -21,18 +21,12 @@ namespace FestivalsXUnitTest
             var controller = new FestivalController(GetMockContextWithData());
 
             // Act
-            var result = ((ViewResult)controller.list()) ;
-            var model = result.Model;
+            var result = controller.list() as ViewResult;
+            var festivals = result.Model as List<Festival>;
 
-            Console.WriteLine(model.GetType());
-            
             Assert.NotNull(result);
-            Assert.NotNull(model);
-            // Assert
-            ///var okResult = result.Should().BeOfType<<>>().Subject;
-            //       var persons = okResult.Value.Should().BeAssignableTo<IEnumerable<Person>>().Subject;
+            Assert.Equal(festivals.Count, 1);
 
-            //     persons.Count().Should().Be(50);
         }
 
         private MyContext GetMockContextWithData()
@@ -47,6 +41,23 @@ namespace FestivalsXUnitTest
             test.Country = "count";
             test.Description = "desc";
 
+
+            Role role = new Role()
+            {
+                Name = "Administrator",
+                Code = "ADMIN"
+            };
+
+
+            User user = new User()
+            {
+                Email = "admin",
+                Password = "1111",
+                Role = role
+            };
+
+            role.Users.Add(user);
+            context.Roles.Add(role);
             context.Festivals.Add(test);
            
             context.SaveChanges();

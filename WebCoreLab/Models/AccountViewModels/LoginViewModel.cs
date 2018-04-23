@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Eloud.Models.AccountViewModels
+namespace WebCoreLab.Models.AccountViewModels
 {
     public class LoginViewModel
     {

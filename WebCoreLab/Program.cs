@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using WebCoreLab.Data;
+using WebCoreLab.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using WebCoreLab.Domain.Context;
+using Microsoft.Extensions.Logging;
 
 namespace WebCoreLab
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = BuildWebHost(args);
 
@@ -23,8 +25,9 @@ namespace WebCoreLab
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<MyContext>();
-                    DbInitializer.Initialize(context);
+                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                    var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    await DBInitializer.InitializeAsync(userManager, rolesManager);
                 }
                 catch (Exception ex)
                 {
@@ -33,7 +36,7 @@ namespace WebCoreLab
                 }
             }
 
-            host.Run();
+            BuildWebHost(args).Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

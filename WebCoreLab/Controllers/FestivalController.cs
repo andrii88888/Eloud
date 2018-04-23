@@ -4,20 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebCoreLab.Data;
 using WebCoreLab.Domain;
-using WebCoreLab.Domain.Context;
 
 namespace WebCoreLab.Controllers
 {
-    
+
     public class FestivalController : BaseController
     {
-        private MyContext context { get; set; }
-
-        public FestivalController(MyContext _context)
-        {
-            context = _context;
-        }
+        public FestivalController(ApplicationDbContext _context) : base(_context) { }
 
         [HttpGet]
         public IActionResult list()

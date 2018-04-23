@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Eloud.Models;
-using Eloud.Models.ManageViewModels;
+using WebCoreLab.Models;
+using WebCoreLab.Models.ManageViewModels;
 
 namespace Eloud.Controllers
 {

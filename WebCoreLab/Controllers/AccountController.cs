@@ -10,10 +10,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Eloud.Models;
-using Eloud.Models.AccountViewModels;
+using WebCoreLab.Models;
+using WebCoreLab.Models.AccountViewModels;
 
-namespace Eloud.Controllers
+namespace WebCoreLab.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]

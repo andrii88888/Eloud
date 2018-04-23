@@ -8,67 +8,61 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
+using WebCoreLab.Data;
 
 namespace WebCoreLab.Controllers
 {
     public class BaseController : Controller
     {
-        private const string USER_KEY = "_CurUser";
+        protected ApplicationDbContext context { get; set; }
 
-        public User CurUser
+        protected BaseController(ApplicationDbContext _context)
         {
-            get
-            {
-                return HttpContext.Session.Get<User>(USER_KEY);
-            }
-            set
-            {
-                HttpContext.Session.Set<User>(USER_KEY, value);
-            }
+            context = _context;
         }
     }
 
     public class RedirectFilter : ActionFilterAttribute
     {
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            if (!IsAuthorized(filterContext))
-            {
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home" }));
-            }
-        }
+        //public override void OnActionExecuting(ActionExecutingContext filterContext)
+        //{
+        //    if (!IsAuthorized(filterContext))
+        //    {
+        //        filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home" }));
+        //    }
+        //}
 
-        private bool IsAuthorized(ActionExecutingContext filterContext)
-        {
-            bool result = false;
+        //private bool IsAuthorized(ActionExecutingContext filterContext)
+        //{
+        //    bool result = false;
 
-            User user = filterContext.HttpContext.Session.Get<User>("_CurUser");
+        //    User user = filterContext.HttpContext.Session.Get<User>("_CurUser");
 
-            result = user != null;
+        //    result = user != null;
 
-            return true;
-        }
+        //    return true;
+        //}
     }
 
     public class RedirectFilterNotAdmin : ActionFilterAttribute
     {
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            if (!IsAdmin(filterContext))
-            {
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home" }));
-            }
-        }
+        //public override void OnActionExecuting(ActionExecutingContext filterContext)
+        //{
+        //    if (!IsAdmin(filterContext))
+        //    {
+        //        filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home" }));
+        //    }
+        //}
 
-        private bool IsAdmin(ActionExecutingContext filterContext)
-        {
-            bool result = false;
+        //private bool IsAdmin(ActionExecutingContext filterContext)
+        //{
+        //    bool result = false;
 
-            User user = filterContext.HttpContext.Session.Get<User>("_CurUser");
+        //    User user = filterContext.HttpContext.Session.Get<User>("_CurUser");
 
-            result = user != null && user.Role.Code == "ADMIN";
+        //    result = user != null && user.Role.Code == "ADMIN";
 
-            return result;
-        }
+        //    return result;
+        //}
     }
 }

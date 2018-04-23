@@ -41,7 +41,7 @@ namespace WebCoreLab.Controllers
                 return NotFound();
             }
 
-            var artist = await context.Artists.Include(s => s.LineUps).AsNoTracking().SingleOrDefaultAsync(m => m.ID == id);
+            var artist = await context.Artists.Include(s => s.LineUps).ThenInclude(l=>l.Festival).AsNoTracking().SingleOrDefaultAsync(m => m.ID == id);
 
             if (artist == null)
             {

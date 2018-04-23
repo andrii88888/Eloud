@@ -13,7 +13,7 @@ using Microsoft.Extensions.Options;
 using WebCoreLab.Models;
 using WebCoreLab.Models.ManageViewModels;
 
-namespace Eloud.Controllers
+namespace WebCoreLab.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]

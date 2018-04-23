@@ -1,20 +1,15 @@
 ﻿@model List<WebCoreLab.Domain.Artist>
 @using WebCoreLab.Domain
 @{
-    var CurUser = Context.Session.Get<User>("_CurUser");
-}
-
-@{
     ViewData["Title"] = "List";
 }
 
 <div class="row">
     <div class="col-lg-12" align="right">
-        @if (CurUser.Role.Code == "ADMIN")
+        @if (ViewContext.HttpContext.User.IsInRole("admin"))
         {
-            <input type="button" class="btn btn-success" value="Add" onclick="location.href='@Url.Action("edit","Artist")'" />
+          <input type="button" class="btn btn-success" value="Add" onclick="location.href='@Url.Action("edit","Artist")'" />
         }
-
     </div>
 </div>
 
@@ -45,14 +40,14 @@
 
                     @*<a asp-action="Details" asp-route-id="@item.ID">Details</a>*@
                     <input type="button" class="btn btn-success" value="Details" onclick="location.href='@Url.Action("Details","Artist",  new { @id = @item.ID} )'" />
-                   
-                    @if (CurUser.Role.Code == "ADMIN")
-                    {
-                        <div class="btn-group">
-                        <a class="btn btn-primary" href="@Url.Action("edit", "Artist", new { @id = @item.ID})"><i class="icon_pencil"></i></a>
-                        <a class="btn btn-danger" href="@Url.Action("remove", "Artist", new { @id = @item.ID })"><i class="icon_close_alt2"></i></a>
-                        </div>
-                    }
+
+                    @if (ViewContext.HttpContext.User.IsInRole("admin"))
+                  {
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="@Url.Action("edit", "Artist", new { @id = @item.ID})"><i class="icon_pencil"></i></a>
+                    <a class="btn btn-danger" href="@Url.Action("remove", "Artist", new { @id = @item.ID })"><i class="icon_close_alt2"></i></a>
+                </div>
+}
 
                 </td>
             </tr>

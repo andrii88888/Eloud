@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebCoreLab.Data;
@@ -9,7 +10,7 @@ using WebCoreLab.Domain;
 
 namespace WebCoreLab.Controllers
 {
-
+    [Authorize(Roles = "admin")]
     public class FestivalController : BaseController
     {
         public FestivalController(ApplicationDbContext _context) : base(_context) { }
@@ -17,9 +18,7 @@ namespace WebCoreLab.Controllers
         [HttpGet]
         public IActionResult list()
         {
-            List<Festival> list = context.Festivals.ToList();
-
-            return View(list);
+            return View(context.Festivals.ToList());
         }
 
         [HttpGet]
@@ -42,7 +41,6 @@ namespace WebCoreLab.Controllers
             return View(festival);
         }
 
-        [RedirectFilterNotAdmin]
         [HttpGet]
         public IActionResult edit(long? id)
         {
@@ -51,8 +49,7 @@ namespace WebCoreLab.Controllers
 
             return View(festival);
         }
-
-        [RedirectFilterNotAdmin]
+        
         [HttpPost]
         public ActionResult edit(Festival model)
         {
@@ -94,7 +91,6 @@ namespace WebCoreLab.Controllers
         }
 
 
-        [RedirectFilterNotAdmin]
         [HttpGet]
         public ActionResult remove(Festival model)
         {

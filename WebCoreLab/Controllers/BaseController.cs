@@ -21,48 +21,5 @@ namespace WebCoreLab.Controllers
             context = _context;
         }
     }
-
-    public class RedirectFilter : ActionFilterAttribute
-    {
-        //public override void OnActionExecuting(ActionExecutingContext filterContext)
-        //{
-        //    if (!IsAuthorized(filterContext))
-        //    {
-        //        filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home" }));
-        //    }
-        //}
-
-        //private bool IsAuthorized(ActionExecutingContext filterContext)
-        //{
-        //    bool result = false;
-
-        //    User user = filterContext.HttpContext.Session.Get<User>("_CurUser");
-
-        //    result = user != null;
-
-        //    return true;
-        //}
-    }
-
-    public class RedirectFilterNotAdmin : ActionFilterAttribute
-    {
-        //public override void OnActionExecuting(ActionExecutingContext filterContext)
-        //{
-        //    if (!IsAdmin(filterContext))
-        //    {
-        //        filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home" }));
-        //    }
-        //}
-
-        //private bool IsAdmin(ActionExecutingContext filterContext)
-        //{
-        //    bool result = false;
-
-        //    User user = filterContext.HttpContext.Session.Get<User>("_CurUser");
-
-        //    result = user != null && user.Role.Code == "ADMIN";
-
-        //    return result;
-        //}
-    }
+    
 }

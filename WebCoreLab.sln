@@ -7,12 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCoreLab", "WebCoreLab\We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FestivalsXUnitTest", "FestivalsXUnitTest\FestivalsXUnitTest.csproj", "{F6EAE914-30A5-4CE3-ACF6-BA6EE2EADBF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingControllers", "TestingControllers\TestingControllers.csproj", "{974E0297-AACA-469D-AC1F-3DA98301472B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{F6EAE914-30A5-4CE3-ACF6-BA6EE2EADBF9} = {F6EAE914-30A5-4CE3-ACF6-BA6EE2EADBF9}
-		{FFB68895-1FA4-41A8-8C33-706434EE714D} = {FFB68895-1FA4-41A8-8C33-706434EE714D}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,10 +21,6 @@ Global
 		{F6EAE914-30A5-4CE3-ACF6-BA6EE2EADBF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6EAE914-30A5-4CE3-ACF6-BA6EE2EADBF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6EAE914-30A5-4CE3-ACF6-BA6EE2EADBF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{974E0297-AACA-469D-AC1F-3DA98301472B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{974E0297-AACA-469D-AC1F-3DA98301472B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{974E0297-AACA-469D-AC1F-3DA98301472B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{974E0297-AACA-469D-AC1F-3DA98301472B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

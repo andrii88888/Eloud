@@ -21,20 +21,8 @@ namespace WebCoreLab.Models
         {
             Festivals = list;
 
-            Years = new List<int>();
-            Months = new List<string>();
-
-            for (int i = 2010; i < 2020; i++)
-            {
-                Years.Add(i);
-            }
-
-            for (int j = 1; j < 13; j++)
-            {
-                string strMonthName = new DateTimeFormatInfo().GetMonthName(j);
-
-                Months.Add(strMonthName);
-            }
+            Years = Enumerable.Range(DateTime.Now.Year - 1, 5).ToList();
+            Months = Enumerable.Range(1, 12).Select(i => new DateTimeFormatInfo().GetMonthName(i)).ToList();
 
             SelectedYear = DateTime.Now.Year;
             SelectedMonth = new DateTimeFormatInfo().GetMonthName(DateTime.Now.Month);

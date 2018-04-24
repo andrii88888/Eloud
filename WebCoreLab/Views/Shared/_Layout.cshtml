@@ -31,13 +31,15 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Artist" asp-action="ArtistsVariety">ArtistsVariety</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+
                     @if (ViewContext.HttpContext.User.IsInRole("admin"))
-                     {
-                    <li><a asp-area="" asp-controller="Festival" asp-action="list">Edit Festivals</a></li>
-                    <li><a asp-area="" asp-controller="Artist" asp-action="List">Edit Artists</a></li>
-                     }
+    {
+                <li><a asp-area="" asp-controller="Festival" asp-action="list">Edit Festivals</a></li>
+                <li><a asp-area="" asp-controller="Artist" asp-action="List">Edit Artists</a></li>
+}
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

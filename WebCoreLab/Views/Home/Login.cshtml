@@ -4,9 +4,9 @@
     ViewData["Title"] = "Login";
 }
 
-<div class="row">
-    <div class="col-md-offset-5 col-md-3">
-        <div class="form-login">
+<div class="row" style="text-align:center; align-items:center">
+    @*<div class="col-md-offset-5 col-md-3">*@
+        <div class="form-login" style="text-align:center; align-items:center">
             <h4>Welcome back</h4>
             @using (Html.BeginForm("login", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
             {
@@ -21,6 +21,6 @@
                 </div>
             }
         </div>
-    </div>
+    @*</div>*@
 </div>
 

@@ -15,6 +15,14 @@ namespace WebCoreLab.Controllers
         public ArtistController(ApplicationDbContext _context) : base(_context) {}
 
         [HttpGet]
+        public IActionResult ArtistsVariety()
+        {
+            ViewData["Message"] = "ArtistsVariety";
+            List<Artist> list = context.Artists.ToList();
+            return View("ArtistsVariety", list);
+        }
+
+        [HttpGet]
         public IActionResult List()
         {
             ViewData["Message"] = "Artists";

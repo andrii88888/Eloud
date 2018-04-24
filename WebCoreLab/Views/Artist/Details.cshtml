@@ -2,48 +2,68 @@
 @{
     ViewData["Title"] = "Details";
 }
-<dt>
-    @Html.DisplayNameFor(model => model.Name)
-</dt>
-<dd>
-    @Html.DisplayFor(model => model.Name)
-</dd>
-<dt>
-    @Html.DisplayNameFor(model => model.Country)
-</dt>
-<dd>
-    @Html.DisplayFor(model => model.Country)
-</dd>
-<dt>
-    @Html.DisplayNameFor(model => model.Description)
-</dt>
-<dd>
-    @Html.DisplayFor(model => model.Description)
-</dd>
 
-<dt>
-    @Html.DisplayNameFor(model => model.LineUps)
-</dt>
-<dd>
-    <table class="table">
-        <tr>
-            <th>Festival</th>
-            <th>Start</th>
-            <th>End</th>
-        </tr>
-        @foreach (var item in Model.LineUps)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Festival.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Festival.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Festival.EndDate)
-            </td>
-        </tr>
-        }
-    </table>
-</dd>
+<style>
+    th, td {
+        border-bottom: 1px solid #ddd;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<div class="gallery" style="display: block; margin-left: auto; margin-right: auto;
+    width: 50%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <img src="@Model.ImageLink" class="img-responsive" /> 
+</div>
+<div class="artist-info" style="text-align: center;">
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LineUps)
+        </dt>
+    </dl>
+</div>
+    
+    <dd>
+        <table class="table" align="center" >
+            <tr>
+                <th>Festival</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+            @foreach (var item in Model.LineUps)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Festival.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Festival.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Festival.EndDate)
+                    </td>
+                </tr>
+            }
+        </table>
+    </dd>
+

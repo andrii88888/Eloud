@@ -5,6 +5,8 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+
 <div class="row">
     <div class="col-md-3">
         @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
@@ -38,16 +40,20 @@
                     @if (index_0 < Model.Festivals.Count)
                     {
                         <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                            <table border="0" style="width: 100%;">
+                            <table border="0" style="width: 100%; cursor: pointer;">
                                 <tr>
-                                    <td>
+                                    @*<td>
                                         <img src="@Model.Festivals[index_0].ImageLink" class="img-responsive">
+                                    </td>*@
+                                    <td>
+                                        <a asp-area="" asp-route-id="@Model.Festivals[index_0].Id" asp-controller="Festival" asp-action="Details"><img src="@Model.Festivals[index_0].ImageLink" class="img-responsive" width="400" height="700"></a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <span class="tdDate">@Model.Festivals[index_0].StartDate</span>
                                     </td>
+                                  
                                 </tr>
                                 <tr>
                                     <td>
@@ -66,10 +72,13 @@
                     @if (index_1 < Model.Festivals.Count)
                     {
                         <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                            <table border="0" style="width: 100%;">
+                            <table border="0" style="width: 100%; cursor: pointer;">
                                 <tr>
+                                    @*<td>
+            <img src="@Model.Festivals[index_1].ImageLink" class="img-responsive" />
+        </td>*@
                                     <td>
-                                        <img src="@Model.Festivals[index_1].ImageLink" class="img-responsive" />
+                                        <a asp-area="" asp-route-id="@Model.Festivals[index_1].Id" asp-controller="Festival" asp-action="Details"><img src="@Model.Festivals[index_1].ImageLink" class="img-responsive" width="400" height="700"></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -94,10 +103,13 @@
                     @if (index_2 < Model.Festivals.Count)
                     {
                         <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                            <table border="0" style="width: 100%;">
+                            <table border="0" style="width: 100%; cursor: pointer;">
                                 <tr>
+                                    @*<td>
+            <img src="@Model.Festivals[index_2].ImageLink" class="img-responsive" />
+        </td>*@
                                     <td>
-                                        <img src="@Model.Festivals[index_2].ImageLink" class="img-responsive" />
+                                        <a asp-area="" asp-route-id="@Model.Festivals[index_2].Id" asp-controller="Festival" asp-action="Details"><img src="@Model.Festivals[index_2].ImageLink" class="img-responsive" width="400" height="700"></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -122,10 +134,13 @@
                     @if (index_3 < Model.Festivals.Count)
                     {
                         <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                            <table border="0" style="width: 100%;">
+                            <table border="0" style="width: 100%; cursor: pointer;">
                                 <tr>
+                                    @*<td>
+            <img src="@Model.Festivals[index_3].ImageLink" class="img-responsive" />
+        </td>*@
                                     <td>
-                                        <img src="@Model.Festivals[index_3].ImageLink" class="img-responsive" />
+                                        <a asp-area="" asp-route-id="@Model.Festivals[index_3].Id" asp-controller="Festival" asp-action="Details"><img src="@Model.Festivals[index_3].ImageLink" class="img-responsive" width="400" height="700"></a>
                                     </td>
                                 </tr>
                                 <tr>

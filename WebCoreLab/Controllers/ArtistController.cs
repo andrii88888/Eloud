@@ -54,7 +54,6 @@ namespace WebCoreLab.Controllers
             return View(artist);
         }
 
-        [RedirectFilterNotAdmin]
         [HttpGet]
         public IActionResult edit(long? id)
         {
@@ -65,7 +64,6 @@ namespace WebCoreLab.Controllers
             return View(artist);
         }
 
-        [RedirectFilterNotAdmin]
         [HttpPost]
         public ActionResult edit(Artist model)
         {
@@ -105,8 +103,6 @@ namespace WebCoreLab.Controllers
             return View(model);
         }
 
-
-        [RedirectFilterNotAdmin]
         [HttpGet]
         public ActionResult remove(Artist model)
         {

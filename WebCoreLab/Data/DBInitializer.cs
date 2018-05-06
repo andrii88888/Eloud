@@ -1,8 +1,5 @@
 ﻿using WebCoreLab.Models;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebCoreLab.Data
@@ -31,7 +28,8 @@ namespace WebCoreLab.Data
                     await userManager.AddToRoleAsync(admin, "admin");
                 }
             }
-            //context.Database.EnsureCreated();
+
+            ;
         }
     }
 }

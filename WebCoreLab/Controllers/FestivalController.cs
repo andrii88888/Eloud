@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebCoreLab.Data;
 using WebCoreLab.Domain;
+using WebCoreLab.Models;
 
 namespace WebCoreLab.Controllers
 {
@@ -24,11 +26,13 @@ namespace WebCoreLab.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
-            ViewData["Message"] = "list";
+            
             if (id == null)
             {
                 return NotFound();
             }
+
+            registerView(id);
 
             var festival = await context.Festivals.Include(s => s.LineUps).ThenInclude(a=> a.Artist)
                 .AsNoTracking().SingleOrDefaultAsync(m => m.Id == id);
@@ -39,6 +43,14 @@ namespace WebCoreLab.Controllers
             }
 
             return View(festival);
+        }
+
+        private void registerView(int? id)
+        {
+
+            context.ViewUserEvent.Add(new ViewUserEvent(User.Identity.Name, id, DateTime.Now));
+           
+            context.SaveChanges();
         }
 
         [HttpGet]
@@ -118,5 +130,6 @@ namespace WebCoreLab.Controllers
 
             return View("list", list);
         }
+        
     }
 }

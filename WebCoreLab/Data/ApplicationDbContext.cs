@@ -13,6 +13,7 @@ namespace WebCoreLab.Data
     {
         public virtual DbSet<Festival> Festivals { get; set; }
         public DbSet<Artist> Artists { get; set; }
+        public DbSet<ViewUserEvent> ViewUserEvent { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -21,8 +22,7 @@ namespace WebCoreLab.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            
+            base.OnModelCreating(modelBuilder);       
         }
     }
 }

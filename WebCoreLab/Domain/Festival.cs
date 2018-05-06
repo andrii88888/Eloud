@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebCoreLab.Models;
 
 namespace WebCoreLab.Domain
 {
@@ -16,6 +18,7 @@ namespace WebCoreLab.Domain
         public virtual string Description { get; set; }
         public virtual string ImageLink { get; set; }
         public ICollection<LineUp> LineUps { get; set; }
+       // public ICollection<Subscribtion> Subcribers { get; set; }
 
         public Festival() { }
 

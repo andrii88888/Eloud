@@ -16,6 +16,11 @@
     width: 50%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
             <img src="@Model.ImageLink" class="img-responsive" /> 
 </div>
+<div class="buy">
+   
+    @*<input type="button" class="btn btn-success" value="Subscribe" onclick="location.href='@Url.Action("Subscribe","Artist")'" />*@
+    <a asp-controller="Artist" asp-action="Subscribe" asp-route-id="@Model.ID" class="btn btn-success">Subscribe</a>
+</div>
 <div class="artist-info" style="text-align: center;">
     <dl>
         <dt>
@@ -53,6 +58,7 @@
             @foreach (var item in Model.LineUps)
             {
                 <tr>
+
                     <td>
                         @Html.DisplayFor(modelItem => item.Festival.Name)
                     </td>

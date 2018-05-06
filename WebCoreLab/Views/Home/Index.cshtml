@@ -23,6 +23,15 @@
             </table>
         }
     </div>
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p style="text-align:right">
+                Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> |
+                <a asp-action="Index">Back to Full List</a>
+            </p>
+        </div>
+    </form>
 </div>
 
 <div class="row">
@@ -46,7 +55,7 @@
                                         <img src="@Model.Festivals[index_0].ImageLink" class="img-responsive">
                                     </td>*@
                                     <td>
-                                        <a asp-area="" asp-route-id="@Model.Festivals[index_0].Id" asp-controller="Festival" asp-action="Details"><img src="@Model.Festivals[index_0].ImageLink" class="img-responsive" width="400" height="700"></a>
+                                        <a asp-area="" asp-route-id="@Model.Festivals[index_0].Id" asp-controller="Festival" asp-action="Details"><img src="@Model.Festivals[index_0].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -78,7 +87,7 @@
             <img src="@Model.Festivals[index_1].ImageLink" class="img-responsive" />
         </td>*@
                                     <td>
-                                        <a asp-area="" asp-route-id="@Model.Festivals[index_1].Id" asp-controller="Festival" asp-action="Details"><img src="@Model.Festivals[index_1].ImageLink" class="img-responsive" width="400" height="700"></a>
+                                        <a asp-area="" asp-route-id="@Model.Festivals[index_1].Id" asp-controller="Festival" asp-action="Details"><img src="@Model.Festivals[index_1].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -109,7 +118,7 @@
             <img src="@Model.Festivals[index_2].ImageLink" class="img-responsive" />
         </td>*@
                                     <td>
-                                        <a asp-area="" asp-route-id="@Model.Festivals[index_2].Id" asp-controller="Festival" asp-action="Details"><img src="@Model.Festivals[index_2].ImageLink" class="img-responsive" width="400" height="700"></a>
+                                        <a asp-area="" asp-route-id="@Model.Festivals[index_2].Id" asp-controller="Festival" asp-action="Details"><img src="@Model.Festivals[index_2].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -140,7 +149,7 @@
             <img src="@Model.Festivals[index_3].ImageLink" class="img-responsive" />
         </td>*@
                                     <td>
-                                        <a asp-area="" asp-route-id="@Model.Festivals[index_3].Id" asp-controller="Festival" asp-action="Details"><img src="@Model.Festivals[index_3].ImageLink" class="img-responsive" width="400" height="700"></a>
+                                        <a asp-area="" asp-route-id="@Model.Festivals[index_3].Id" asp-controller="Festival" asp-action="Details"><img src="@Model.Festivals[index_3].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
                                     </td>
                                 </tr>
                                 <tr>

@@ -13,11 +13,8 @@ namespace WebCoreLab.Data
     {
         public virtual DbSet<Festival> Festivals { get; set; }
         public DbSet<Artist> Artists { get; set; }
-<<<<<<< HEAD
         public DbSet<ViewUserEvent> ViewUserEvent { get; set; }
-=======
         public DbSet<Subscribtion> Subscribers { get; set; }
->>>>>>> Added Filtering & Subscribtion
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

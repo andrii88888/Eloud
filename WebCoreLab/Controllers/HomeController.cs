@@ -7,6 +7,7 @@ using WebCoreLab.Models;
 using WebCoreLab.Domain;
 using System.Globalization;
 using WebCoreLab.Data;
+using System.Threading.Tasks;
 
 namespace WebCoreLab.Controllers
 {
@@ -14,13 +15,16 @@ namespace WebCoreLab.Controllers
     {
         public HomeController(ApplicationDbContext _context) : base(_context) { }
 
-        public IActionResult Index(int? SelectedYear, string SelectedMonth)
+        public async Task<IActionResult> Index(int? SelectedYear, string SelectedMonth, string searchString)
         {
-            List<Festival> list = context.Festivals.ToList();
+            ViewData["CurrentFilter"] = searchString;
+            var list = from s in context.Festivals
+                          select s;
+            //List<Festival> list = context.Festivals.ToList();
 
             if (SelectedYear.HasValue)
             {
-                list = list.Where(x => x.StartDate.Year == SelectedYear.Value).ToList();
+                list = list.Where(x => x.StartDate.Year == SelectedYear.Value);//.ToList();
             }
 
             if (!String.IsNullOrEmpty(SelectedMonth))
@@ -29,10 +33,16 @@ namespace WebCoreLab.Controllers
 
                 int month = dfi.MonthNames.ToList().IndexOf(SelectedMonth) + 1;
 
-                list = list.Where(x => x.StartDate.Month == month).ToList();
+                list = list.Where(x => x.StartDate.Month == month);//.ToList();
+            }
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                list = list.Where(s => s.Name.Contains(searchString)
+                                       || s.Country.Contains(searchString)
+                                       || s.City.Contains(searchString));
             }
 
-            FestivalListModel model = new FestivalListModel(list);
+            FestivalListModel model = new FestivalListModel(list.ToList());
 
             return View(model);
         }

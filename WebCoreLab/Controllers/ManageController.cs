@@ -159,9 +159,10 @@ namespace WebCoreLab.Controllers
         [HttpGet]
         public IActionResult GetFollowedArtists()
         {
-            List<Subscribtion> listArtist = context.Subscribers.Where(s => s.UserEmail == User.Identity.Name).ToList();
-            //var sub = context.Subscribers.Include(s => s.UserEmail);
-            return View("ArtistSubs",listArtist);
+            List<Subscribtion> listSubscr = context.Subscribers.Where(s => s.UserEmail == User.Identity.Name).ToList();
+            List<Artist> listArtist = context.Artists.Where(artist => listSubscr.Any(subscr => subscr.ArtistID == artist.ID)).ToList();
+
+            return View("ArtistSubs", listArtist);
         }
 
         [HttpGet]

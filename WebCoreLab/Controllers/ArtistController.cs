@@ -92,9 +92,9 @@ namespace WebCoreLab.Controllers
             var subscription = new Subscribtion(User.Identity.Name, (int)id);
             context.Subscribers.Add(subscription);
             context.SaveChanges();
-            
-            //TODO return some working shit
-            return View("Index");
+
+
+            return RedirectToAction("Details/" + id);
         }
 
         [HttpGet]
@@ -112,8 +112,7 @@ namespace WebCoreLab.Controllers
             context.Subscribers.Remove(subscription.First());
             context.SaveChanges();
 
-            //TODO return some working shit
-            return View("Index");
+            return RedirectToAction("Details/" + id);
         }
 
         [HttpGet]

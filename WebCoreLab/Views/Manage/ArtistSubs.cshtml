@@ -13,15 +13,18 @@
                 <tbody>
                     <tr>
                         <th><i class=""></i> Name </th>
+                        <th><i class="icon_pin_alt"></i> Unfollow</th>
 
                     </tr>
                     @if (Model != null)
                     {
                         for (int i = 0; i < Model.Count; i++)
                         {
-                            <tr>
-                                <td>@Model[i].Name</td>
-                            </tr>
+                    <tr>
+                        <td>@Model[i].Name</td>
+                        <td><a asp-controller="Manage" asp-action="Unsubscribe" asp-route-id="@Model[i].ID" class="btn btn-danger">Unsubscribe</a></td>
+                    </tr>
+                            
                         }
                     }
                 </tbody>

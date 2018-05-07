@@ -157,6 +157,23 @@ namespace WebCoreLab.Controllers
         }
 
         [HttpGet]
+        public IActionResult Unsubscribe(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var subscription = context.Subscribers
+                .Where(i => i.UserEmail == User.Identity.Name && i.ArtistID == id);
+
+            context.Subscribers.Remove(subscription.First());
+            context.SaveChanges();
+
+            return RedirectToAction("GetFollowedArtists");
+        }
+
+        [HttpGet]
         public IActionResult GetFollowedArtists()
         {
             List<Subscribtion> listSubscr = context.Subscribers.Where(s => s.UserEmail == User.Identity.Name).ToList();

@@ -1,4 +1,4 @@
-﻿@model WebCoreLab.Domain.Artist
+﻿@model WebCoreLab.Models.ArtistDetailsWithSubscr
 @{
     ViewData["Title"] = "Details";
 }
@@ -14,36 +14,43 @@
 
 <div class="gallery" style="display: block; margin-left: auto; margin-right: auto;
     width: 50%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-            <img src="@Model.ImageLink" class="img-responsive" /> 
+            <img src="@Model.Artist.ImageLink" class="img-responsive" /> 
 </div>
 <div class="buy">
-   
-    @*<input type="button" class="btn btn-success" value="Subscribe" onclick="location.href='@Url.Action("Subscribe","Artist")'" />*@
-    <a asp-controller="Artist" asp-action="Subscribe" asp-route-id="@Model.ID" class="btn btn-success">Subscribe</a>
+
+    @if (Model.Subscribtion == null)
+    {
+        <a asp-controller="Artist" asp-action="Subscribe" asp-route-id="@Model.Artist.ID" class="btn btn-success">Subscribe</a>
+    }
+    else
+    {
+        <a asp-controller="Artist" asp-action="Unsubscribe" asp-route-id="@Model.Artist.ID" class="btn btn-danger">Unsubscribe</a>
+    }
+
 </div>
 <div class="artist-info" style="text-align: center;">
     <dl>
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Artist.Name)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Artist.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Country)
+            @Html.DisplayNameFor(model => model.Artist.Country)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Country)
+            @Html.DisplayFor(model => model.Artist.Country)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Artist.Description)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.Artist.Description)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LineUps)
+            @Html.DisplayNameFor(model => model.Artist.LineUps)
         </dt>
     </dl>
 </div>
@@ -55,7 +62,7 @@
                 <th>Start</th>
                 <th>End</th>
             </tr>
-            @foreach (var item in Model.LineUps)
+            @foreach (var item in Model.Artist.LineUps)
             {
                 <tr>
 

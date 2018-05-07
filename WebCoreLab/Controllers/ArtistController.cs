@@ -30,8 +30,7 @@ namespace WebCoreLab.Controllers
             }
 
             List<Artist> list = await artists.AsNoTracking().ToListAsync();
-            //return View(list);
-            //List<Artist> list = context.Artists.ToList();
+            
             return View("ArtistsVariety", list);
         }
 
@@ -53,11 +52,6 @@ namespace WebCoreLab.Controllers
             List<Artist> list = await artists.AsNoTracking().ToListAsync();
             return View(list);
         }
-        // GET: /<controller>/
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
 
         [HttpGet]
         public async Task<IActionResult> Details(int? id)
@@ -69,6 +63,7 @@ namespace WebCoreLab.Controllers
             }
 
             var artist = await context.Artists.Include(s => s.LineUps).ThenInclude(l=>l.Festival).AsNoTracking().SingleOrDefaultAsync(m => m.ID == id);
+            var subscrQuery = context.Subscribers.Where(i => i.UserEmail == User.Identity.Name && i.ArtistID == id);
             
 
             if (artist == null)
@@ -76,7 +71,10 @@ namespace WebCoreLab.Controllers
                 return NotFound();
             }
 
-            return View(artist);
+            if(subscrQuery.Any())
+                return View(new ArtistDetailsWithSubscr(artist, subscrQuery.First()));
+
+            return View(new ArtistDetailsWithSubscr(artist, null));
         }
 
        
@@ -84,30 +82,38 @@ namespace WebCoreLab.Controllers
 
         [HttpGet]
         public IActionResult Subscribe(int? id)
-
         {
             ViewData["Message"] = "Details";
             if (id == null)
             {
                 return NotFound();
             }
-            //var currArtist = new Artist(id, );
-
+            
             var subscription = new Subscribtion(User.Identity.Name, (int)id);
             context.Subscribers.Add(subscription);
             context.SaveChanges();
+            
+            //TODO return some working shit
+            return View("Index");
+        }
 
-            //var sub = await context.Subscribers.Include(s=>s.UserEmail).AsNoTracking().SingleOrDefaultAsync(m => m.ArtistID == id);
-            // var sub = context.Subscribers.Where(s => s.Id == id).ToList();
+        [HttpGet]
+        public IActionResult Unsubscribe(int? id)
+        {
+            ViewData["Message"] = "Details";
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            //if (sub == null)
-            //{
-            //    return NotFound();
-            //}
+            var subscription = context.Subscribers
+                .Where(i => i.UserEmail == User.Identity.Name && i.ArtistID == id);
 
-            //View("ArtistSubs",sub);
-            //return View("Details");
-            return RedirectToPage("Home/Index");
+            context.Subscribers.Remove(subscription.First());
+            context.SaveChanges();
+
+            //TODO return some working shit
+            return View("Index");
         }
 
         [HttpGet]

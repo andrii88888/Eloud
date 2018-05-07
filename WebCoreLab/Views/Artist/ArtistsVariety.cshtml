@@ -6,22 +6,23 @@
 
 <style>
 
-        div.gallery_product img {
-            width: auto;
-            height: auto;
-        }
+    div.gallery_product img {
+        width: 150%;
+        height: 150%;
+        box-sizing: border-box;
+    }
    
 </style>
 
 
-<div class="row">
-    <div class="col-md-12" style="text-align:center">
-        <div class="search">
+<div class="row" >
+    <div class="col-md-12" >
+        <div class="search" >
             <form asp-action="ArtistsVariety" method="get">
                 <div class="form-actions no-color">
-                    <p style="text-align:right">
+                    <p style="text-align:right; margin-right: 38px;">
                         Find: <input type="text" placeholder="Name/Country" name="SearchString" value="@ViewData["currentFilter"]" />
-                        <input type="submit" value="Search" class="btn btn-default" /> |
+                        <input type="submit" value="Search" class="btn btn-default" /> 
                         <a asp-action="ArtistsVariety" style="background-color: lightgray; color:white; 
                          display: inline-block; padding: 7px 20px; border-top-left-radius: 5px;
                             border-bottom-left-radius: 5px;
@@ -43,8 +44,8 @@
             <div class="row" style="margin-top: 50px;">
                 @if (index_0 < Model.Count)
             {
-                <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                    <table border="0" style="width: 100%; cursor: pointer;">
+                <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe img-responsive">
+                    <table border="0" style="cursor: pointer;">
                         <tr>
                             <td>
                                 <a asp-area="" asp-route-id="@Model[index_0].ID" asp-controller="Artist" asp-action="Details"><img src="@Model[index_0].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
@@ -68,7 +69,7 @@
                 @if (index_1 < Model.Count)
             {
                 <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                    <table border="0" style="width: 100%; cursor: pointer;">
+                    <table border="0" style=" cursor: pointer">
                         <tr>
                             <td>
                                 <a asp-area="" asp-route-id="@Model[index_1].ID" asp-controller="Artist" asp-action="Details"><img src="@Model[index_1].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
@@ -92,7 +93,7 @@
                 @if (index_2 < Model.Count)
             {
                 <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                    <table border="0" style="width: 100%; cursor: pointer;">
+                    <table border="0" style=" cursor: pointer">
                         <tr>
                             <td>
                                 <a asp-area="" asp-route-id="@Model[index_2].ID" asp-controller="Artist" asp-action="Details"><img src="@Model[index_2].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
@@ -116,7 +117,7 @@
                 @if (index_3 < Model.Count)
             {
                 <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                    <table border="0" style="width: 100%; cursor: pointer;">
+                    <table border="0" style=" cursor: pointer">
                         <tr>
                             <td>
                                 <a asp-area="" asp-route-id="@Model[index_3].ID" asp-controller="Artist" asp-action="Details"><img src="@Model[index_3].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>

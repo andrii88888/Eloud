@@ -174,12 +174,17 @@ namespace WebCoreLab.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetFollowedArtists()
+        public async Task<IActionResult> GetFollowedArtists(string searchString)
         {
+            ViewData["CurrentFilter"] = searchString;
             List<Subscribtion> listSubscr = context.Subscribers.Where(s => s.UserEmail == User.Identity.Name).ToList();
-            List<Artist> listArtist = context.Artists.Where(artist => listSubscr.Any(subscr => subscr.ArtistID == artist.ID)).ToList();
-
-            return View("ArtistSubs", listArtist);
+            var listArtist = from s in context.Artists.Where(artist => listSubscr.Any(subscr => subscr.ArtistID == artist.ID)) select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                listArtist = listArtist.Where(s => s.Name.Contains(searchString));
+                // listArtist =  context.Artists.Where(artist => listSubscr.Any(subscr => subscr.ArtistID == artist.ID)).Include(s => s.Name == searchString).ToList();
+            }
+            return View("ArtistSubs", await listArtist.AsNoTracking().ToListAsync());
         }
 
         [HttpGet]

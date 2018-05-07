@@ -5,6 +5,22 @@
     ViewData.AddActivePage(ManageNavPages.ArtistSubs);
 }
 
+<div class="search">
+    <form asp-action="GetFollowedArtists" method="get">
+        <div class="form-actions no-color">
+            <p  style="margin-bottom: 20px; margin-left: 95px">
+                Find: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> 
+                <a asp-action="GetFollowedArtists"style="background-color: lightgray; color:white; 
+                         display: inline-block; padding: 7px 20px; border-top-left-radius: 5px;
+                            border-bottom-left-radius: 5px;
+                            border-bottom-right-radius: 5px;
+                            border-top-right-radius: 5px; text-align:center">Back</a>
+            </p>
+        </div>
+    </form>
+</div>
+
 <div class="row">
     <div class="col-lg-12">
         <section class="panel">

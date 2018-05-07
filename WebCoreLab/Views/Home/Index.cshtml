@@ -5,6 +5,14 @@
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+
+    div.gallery_product img {
+        width: 150%;
+        height: 150%;
+        box-sizing: border-box;
+    }
+</style>
 
 
 <div class="row">
@@ -25,9 +33,9 @@
     </div>
     <form asp-action="Index" method="get">
         <div class="form-actions no-color">
-            <p style="text-align:right">
+            <p style="text-align:right; margin-right: 51px;">
                 Find: <input type="text" placeholder="Name/Country/City" name="SearchString" value="@ViewData["currentFilter"]" />
-                <input type="submit" value="Search" class="btn btn-default" /> |
+                <input type="submit" value="Search" class="btn btn-default" /> 
                 <a asp-action="Index" style="background-color: lightgray; color:white; 
                          display: inline-block; padding: 7px 20px; border-top-left-radius: 5px;
                             border-bottom-left-radius: 5px;
@@ -52,8 +60,8 @@
                 <div class="row" style="margin-top: 50px;">
                     @if (index_0 < Model.Festivals.Count)
                     {
-                        <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                            <table border="0" style="width: 100%; cursor: pointer;">
+                        <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe img-responsive">
+                            <table border="0" style=" cursor: pointer">
                                 <tr>
                                     @*<td>
                                         <img src="@Model.Festivals[index_0].ImageLink" class="img-responsive">
@@ -85,7 +93,7 @@
                     @if (index_1 < Model.Festivals.Count)
                     {
                         <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                            <table border="0" style="width: 100%; cursor: pointer;">
+                            <table border="0" style=" cursor: pointer">
                                 <tr>
                                     @*<td>
             <img src="@Model.Festivals[index_1].ImageLink" class="img-responsive" />
@@ -116,7 +124,7 @@
                     @if (index_2 < Model.Festivals.Count)
                     {
                         <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                            <table border="0" style="width: 100%; cursor: pointer;">
+                            <table border="0" style="cursor: pointer">
                                 <tr>
                                     @*<td>
             <img src="@Model.Festivals[index_2].ImageLink" class="img-responsive" />
@@ -147,7 +155,7 @@
                     @if (index_3 < Model.Festivals.Count)
                     {
                         <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                            <table border="0" style="width: 100%; cursor: pointer;">
+                            <table border="0" style=" cursor: pointer">
                                 <tr>
                                     @*<td>
             <img src="@Model.Festivals[index_3].ImageLink" class="img-responsive" />

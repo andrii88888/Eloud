@@ -1,24 +1,28 @@
 ﻿@{
     ViewData["Title"] = "Festivals";
 }
-<h2>Festivals</h2>
+<h2 style="margin-left: 502px;margin-bottom: 30px;">Festivals</h2>
 <div class="row" style="margin-right: 140px;margin-left: 140px;">
     <div class="search"  style="margin-left: 165px;">
         <form asp-action="list" method="get">
             <div class="form-actions no-color">
-                <p>
+                <p style="text-align: right; margin-right: 73px">
                     Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-                    <input type="submit" value="Search" class="btn btn-default" /> |
-                    <a asp-action="list">Back to Full List</a>
+                    <input type="submit" value="Search" class="btn btn-default" /> 
+                    <a asp-action="list"style="background-color: lightgray; color:white; 
+                         display: inline-block; padding: 7px 20px; border-top-left-radius: 5px;
+                            border-bottom-left-radius: 5px;
+                            border-bottom-right-radius: 5px;
+                            border-top-right-radius: 5px; text-align:center">Back</a>
                 </p>
             </div>
         </form>
     </div>
     <div class="row" style="margin-bottom: 10px;">
-        <div class="col-lg-12" align="right">
+        <div class="col-lg-12" align="left">
             @if (ViewContext.HttpContext.User.IsInRole("admin"))
             {
-                <input type="button" class="btn btn-success" value="Add" onclick="location.href='@Url.Action("edit","Festival")'" />
+                <input type="button" class="btn btn-primary" style="margin-left: 19px;margin-top: -80px" value="Add" onclick="location.href='@Url.Action("edit","Festival")'" />
             }
         </div>
     </div>

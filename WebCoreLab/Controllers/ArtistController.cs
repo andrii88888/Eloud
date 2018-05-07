@@ -35,11 +35,22 @@ namespace WebCoreLab.Controllers
             return View("ArtistsVariety", list);
         }
 
+        
         [HttpGet]
-        public IActionResult List()
+        public async Task<IActionResult> List(string searchString)
         {
             ViewData["Message"] = "Artists";
-            List<Artist> list = context.Artists.ToList();
+            ViewData["CurrentFilter"] = searchString;
+
+            var artists = from s in context.Artists
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                artists = artists.Where(s => s.Name.Contains(searchString)
+                || s.Country.Contains(searchString));
+            }
+            //List<Artist> list = context.Artists.ToList();
+            List<Artist> list = await artists.AsNoTracking().ToListAsync();
             return View(list);
         }
         // GET: /<controller>/
@@ -67,6 +78,8 @@ namespace WebCoreLab.Controllers
 
             return View(artist);
         }
+
+       
 
 
         [HttpGet]

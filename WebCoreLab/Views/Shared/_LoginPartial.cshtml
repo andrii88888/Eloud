@@ -8,9 +8,24 @@
 {
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
+            @*<li class="dropdown-toggle" data-toggle="dropdown">
+                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">
+                    Hello @UserManager.GetUserName(User)!
+                    <span class="caret"></span>
+                </a>
+                    @if (ViewContext.HttpContext.User.IsInRole("admin"))
+            {
+                <ul class="dropdown-menu">
+                        <li><a asp-area="" asp-controller="Festival" asp-action="list"  title="Festival">Edit Festivals</a></li>
+                        <li><a asp-area="" asp-controller="Artist" asp-action="List" title="Artist">Edit Artists</a></li>
+                        <li><a asp-area="" asp-controller="Stats" asp-action="stats">Statistic</a></li>
+                </ul>
+    }
+                
+            </li>*@
             <li>
-                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-            </li>
+            <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+        </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link" style="color:white">Log out</button>
             </li>

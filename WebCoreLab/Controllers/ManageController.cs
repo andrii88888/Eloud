@@ -8,8 +8,11 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using WebCoreLab.Data;
+using WebCoreLab.Domain;
 using WebCoreLab.Models;
 using WebCoreLab.Models.ManageViewModels;
 
@@ -19,6 +22,7 @@ namespace WebCoreLab.Controllers
     [Route("[controller]/[action]")]
     public class ManageController : Controller
     {
+        protected ApplicationDbContext context { get; set; }
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger _logger;
@@ -26,17 +30,20 @@ namespace WebCoreLab.Controllers
 
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
 
-        public ManageController(
+        public ManageController(ApplicationDbContext _context,
           UserManager<ApplicationUser> userManager,
           SignInManager<ApplicationUser> signInManager,
           ILogger<ManageController> logger,
           UrlEncoder urlEncoder)
         {
+            context = _context;
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _urlEncoder = urlEncoder;
         }
+
+        
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -147,6 +154,14 @@ namespace WebCoreLab.Controllers
             StatusMessage = "Your password has been changed.";
 
             return RedirectToAction(nameof(ChangePassword));
+        }
+
+        [HttpGet]
+        public IActionResult GetFollowedArtists()
+        {
+            List<Subscribtion> listArtist = context.Subscribers.Where(s => s.UserEmail == User.Identity.Name).ToList();
+            //var sub = context.Subscribers.Include(s => s.UserEmail);
+            return View("ArtistSubs",listArtist);
         }
 
         [HttpGet]

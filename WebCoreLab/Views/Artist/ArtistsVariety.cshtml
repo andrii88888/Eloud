@@ -20,9 +20,13 @@
             <form asp-action="ArtistsVariety" method="get">
                 <div class="form-actions no-color">
                     <p style="text-align:right">
-                        Find by name/country: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                        Find: <input type="text" placeholder="Name/Country" name="SearchString" value="@ViewData["currentFilter"]" />
                         <input type="submit" value="Search" class="btn btn-default" /> |
-                        <a asp-action="ArtistsVariety">Back to Full List</a>
+                        <a asp-action="ArtistsVariety" style="background-color: lightgray; color:white; 
+                         display: inline-block; padding: 7px 20px; border-top-left-radius: 5px;
+                            border-bottom-left-radius: 5px;
+                            border-bottom-right-radius: 5px;
+                            border-top-right-radius: 5px; text-align:center">Back</a>
                     </p>
                 </div>
             </form>

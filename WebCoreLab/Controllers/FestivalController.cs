@@ -18,9 +18,19 @@ namespace WebCoreLab.Controllers
         public FestivalController(ApplicationDbContext _context) : base(_context) { }
 
         [HttpGet]
-        public IActionResult list()
+        public async Task<IActionResult> list(string searchString)
         {
-            return View(context.Festivals.ToList());
+            ViewData["CurrentFilter"] = searchString;
+            var fests = from s in context.Festivals
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                fests = fests.Where(s => s.Name.Contains(searchString)
+                                       || s.Country.Contains(searchString)
+                                       || s.City.Contains(searchString));
+            }
+
+            return View(await fests.AsNoTracking().ToListAsync());
         }
 
         [HttpGet]

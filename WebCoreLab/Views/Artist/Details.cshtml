@@ -13,13 +13,13 @@
     }
 </style>
 
-<div class="gallery" style="display: block; margin-left: auto; margin-right: auto;
+<div class="gallery" style="display: block; margin-left: 80px; margin-right: auto;
     width: 50%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <img src="@Model.Artist.ImageLink" class="img-responsive" />
 </div>
 @if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
 {
-<div class="buy">
+<div class="buy" style="text-align: right; margin-bottom: 174px; margin-top: -87px;margin-right: 152px">
     @if (Model.Subscribtion == null)
     {
         <a asp-controller="Artist" asp-action="Subscribe" asp-route-id="@Model.Artist.ID" class="btn btn-success">Subscribe</a>
@@ -30,7 +30,7 @@
     }
 </div>
 }
-<div class="artist-info" style="text-align: center;">
+<div class="artist-info" style="text-align: right;margin-right: 150px; margin-top: -410px;margin-bottom: 200px">
     <dl>
         <dt>
             @Html.DisplayNameFor(model => model.Artist.Name)
@@ -51,14 +51,14 @@
             @Html.DisplayFor(model => model.Artist.Description)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Artist.LineUps)
-        </dt>
+        </dt>*@
     </dl>
 </div>
 
 <dd>
-    <table class="table" align="center">
+    <table class="table" align="center" style="margin-left: 81px;margin-right: 109px;width: 80%;max-width: 350%;margin-bottom: 20px;">
         <tr>
             <th>Festival</th>
             <th>Start</th>
@@ -66,18 +66,15 @@
         </tr>
         @foreach (var item in Model.Artist.LineUps)
         {
-            <tr>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Festival.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Festival.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Festival.EndDate)
-                </td>
-            </tr>
+        <tr>
+            <td><a asp-area="" asp-route-id="@item.FestivalID" asp-controller="Festival" style="text-decoration: none" asp-action="Details">@Html.DisplayFor(modelItem => item.Festival.Name)</a></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Festival.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Festival.EndDate)
+            </td>
+        </tr>
         }
     </table>
 </dd>

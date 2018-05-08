@@ -4,67 +4,68 @@
 }
 
 
-<div class="gallery" style="display: block; margin-left: auto; margin-right: auto;
+<div class="gallery" style="display: block; margin-left: 80px; margin-right: auto;
     width: 50%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <img src="@Model.ImageLink" class="img-responsive" />
 </div>
+<dl class="info" style="text-align: right;margin-top: -305px;margin-bottom: 101px;margin-right: 149px">
+    <dt>
+        @Html.DisplayNameFor(model => model.Name)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Country)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Country)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.City)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.City)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.StartDate)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.StartDate)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.EndDate)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.EndDate)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Description)
+    </dd>
 
-<dt>
-    @Html.DisplayNameFor(model => model.Name)
-</dt>
-<dd>
-    @Html.DisplayFor(model => model.Name)
-</dd>
-<dt>
-    @Html.DisplayNameFor(model => model.Country)
-</dt>
-<dd>
-    @Html.DisplayFor(model => model.Country)
-</dd>
-<dt>
-    @Html.DisplayNameFor(model => model.City)
-</dt>
-<dd>
-    @Html.DisplayFor(model => model.City)
-</dd>
-<dt>
-    @Html.DisplayNameFor(model => model.StartDate)
-</dt>
-<dd>
-    @Html.DisplayFor(model => model.StartDate)
-</dd>
-<dt>
-    @Html.DisplayNameFor(model => model.EndDate)
-</dt>
-<dd>
-    @Html.DisplayFor(model => model.EndDate)
-</dd>
-<dt>
-    @Html.DisplayNameFor(model => model.Description)
-</dt>
-<dd>
-    @Html.DisplayFor(model => model.Description)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.LineUps)
-</dt>
-<dd>
-    <table class="table">
-        <tr>
-            <th>Artist</th>
-            <th>Country</th>
-        </tr>
-        @foreach (var item in Model.LineUps)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Artist.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Artist.Country)
-                </td>
-            </tr>
-        }
-    </table>
+    <dt>
+        @Html.DisplayNameFor(model => model.LineUps)
+    </dt>
+    <dd>
+</dl>
+<table class="table" style="width: 80%;max-width: 350%;margin-bottom: 20px;margin-left: 76px">
+    <tr>
+        <th>Artist</th>
+        <th>Country</th>
+    </tr>
+    @foreach (var item in Model.LineUps)
+    {
+    <tr>
+        
+        <td><a asp-area="" asp-route-id="@item.ArtistID" asp-controller="Artist" style="text-decoration: none" asp-action="Details">@Html.DisplayFor(modelItem => item.Artist.Name)</a></td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Artist.Country)
+        </td>
+    </tr>
+    }
+</table>
 </dd>

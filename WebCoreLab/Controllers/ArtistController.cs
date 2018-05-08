@@ -8,6 +8,8 @@ using WebCoreLab.Data;
 using WebCoreLab.Domain;
 using Microsoft.AspNetCore.Identity;
 using WebCoreLab.Models;
+using System.Net.Mail;
+using System.Net;
 
 namespace WebCoreLab.Controllers
 {
@@ -77,7 +79,9 @@ namespace WebCoreLab.Controllers
             return View(new ArtistDetailsWithSubscr(artist, null));
         }
 
-       
+        string mail_body = "Anything can be in the body\n. Mail contents.";
+        string subject = "Mail Subject";
+        string mailTo = "sofia.gorlata@gmail.com";
 
 
         [HttpGet]
@@ -92,7 +96,7 @@ namespace WebCoreLab.Controllers
             var subscription = new Subscribtion(User.Identity.Name, (int)id);
             context.Subscribers.Add(subscription);
             context.SaveChanges();
-
+            SendEmail(mailTo, subject, mail_body);
 
             return RedirectToAction("Details/" + id);
         }
@@ -113,6 +117,26 @@ namespace WebCoreLab.Controllers
             context.SaveChanges();
 
             return RedirectToAction("Details/" + id);
+        }
+       
+        private bool SendEmail(string mail_to, string mail_subject, string mail_body)
+        {
+            bool result = false;
+            try
+            {
+                SmtpClient client = new SmtpClient("mysmtpserver");
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("username", "password");
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress("whoever@me.com");
+                mailMessage.To.Add(mail_to);
+                mailMessage.Body = mail_body;
+                mailMessage.Subject = mail_subject;
+                client.Send(mailMessage);
+                result = true;
+            }
+            catch (Exception ex) { result = false; }
+            return result;
         }
 
         [HttpGet]

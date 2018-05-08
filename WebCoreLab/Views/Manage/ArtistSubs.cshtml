@@ -37,10 +37,11 @@
             {
                 for (int i = 0; i < Model.Count; i++)
                 {
-                    <tr>
-                        <td>@Model[i].Name</td>
-                        <td><a asp-controller="Manage" asp-action="Unsubscribe" asp-route-id="@Model[i].ID" class="btn btn-danger">Unsubscribe</a></td>
-                    </tr>
+                        <tr>
+                            
+                            <td><a asp-area="" asp-route-id="@Model[i].ID" asp-controller="Artist" style="text-decoration: none" asp-action="Details">@Model[i].Name</a></td>
+                            <td><a asp-controller="Manage" asp-action="Unsubscribe" asp-route-id="@Model[i].ID" class="btn btn-danger">Unsubscribe</a></td>
+                        </tr>
 
     }
 }

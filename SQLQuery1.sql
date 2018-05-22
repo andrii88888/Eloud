@@ -1,0 +1,1 @@
+ALTER TABLE Artists ADD YearOfBirth int NULL;

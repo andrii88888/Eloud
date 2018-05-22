@@ -15,7 +15,7 @@ namespace FestivalsXUnitTest
         public void testGetAll()
         {
             var controller = new FestivalController(GetMockContextWithData());
-            var result = controller.list() as ViewResult;
+            var result = controller.list(null).Result() as ViewResult;
             var festivals = result.Model as List<Festival>;
 
             Assert.Equal(4, festivals.Count);
@@ -27,14 +27,14 @@ namespace FestivalsXUnitTest
         public void testEditFestival()
         {
             var controller = new FestivalController(GetMockContextWithData());
-            var result = controller.list() as ViewResult;
+            var result = controller.list(null).Result() as ViewResult;
             var festivals = result.Model as List<Festival>;
 
             var fest0 = festivals[0];
             fest0.City = "UpdatedCity";
             controller.edit(fest0);
 
-            var updFestivals = (controller.list() as ViewResult).Model as List<Festival>;
+            var updFestivals = (controller.list(null).Result() as ViewResult).Model as List<Festival>;
             var expectedUpd = festivalContextList();
             expectedUpd[0].City = "UpdatedCity";
 
@@ -45,7 +45,7 @@ namespace FestivalsXUnitTest
         public void testRemoveFestival()
         {
             var controller = new FestivalController(GetMockContextWithData());
-            var result = controller.list() as ViewResult;
+            var result = controller.list(null).Result() as ViewResult;
             var festivals = result.Model as List<Festival>;
 
             controller.remove(festivals[0]);
@@ -53,7 +53,7 @@ namespace FestivalsXUnitTest
             var expected = festivalContextList();
             expected.RemoveAt(0);
 
-            var afterRemove = (controller.list() as ViewResult).Model as List<Festival>;
+            var afterRemove = (controller.list(null).Result() as ViewResult).Model as List<Festival>;
 
             Assert.Equal(afterRemove, expected);
         }

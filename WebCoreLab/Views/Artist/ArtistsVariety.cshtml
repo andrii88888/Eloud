@@ -16,14 +16,15 @@
 
 
 <div class="row" >
-    <div class="col-md-12" >
-        <div class="search" >
+    <div class="col-md-12">
+        <div class="search">
             <form asp-action="ArtistsVariety" method="get">
                 <div class="form-actions no-color">
                     <p style="text-align:right; margin-right: 38px;">
                         Find: <input type="text" placeholder="Name/Country" name="SearchString" value="@ViewData["currentFilter"]" />
-                        <input type="submit" value="Search" class="btn btn-default" /> 
-                        <a asp-action="ArtistsVariety" style="background-color: lightgray; color:white; 
+                        <input type="submit" value="Search" class="btn btn-default" />
+                        <input type="hidden" name="sortOrder" value="@ViewData["NameSortParm"]" />
+                        <a asp-action="ArtistsVariety" style="background-color: lightgray; color:white;
                          display: inline-block; padding: 7px 20px; border-top-left-radius: 5px;
                             border-bottom-left-radius: 5px;
                             border-bottom-right-radius: 5px;
@@ -34,111 +35,131 @@
         </div>
         @if (Model != null && Model.Any())
     {
+
         for (int i = 0; i < Model.Count; i += 4)
         {
-            int index_0 = i;
-            int index_1 = i + 1;
-            int index_2 = i + 2;
-            int index_3 = i + 3;
+          
+        int index_0 = i;
+        int index_1 = i + 1;
+        int index_2 = i + 2;
+        int index_3 = i + 3;
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <a asp-action="ArtistsVariety" style="background-color: lightgray; color:white;
+                         display: inline-block; padding: 7px 20px; border-top-left-radius: 5px;
+                            border-bottom-left-radius: 5px;
+                            border-bottom-right-radius: 5px;
+                            border-top-right-radius: 5px; " asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-searchString ="@ViewData["currentFilter"]">@Html.DisplayNameFor(model => model[index_0].Name)</a>
+                    </th>
+                </tr>
+            </thead>
+        </table>
 
-            <div class="row" style="margin-top: 50px;">
-                @if (index_0 < Model.Count)
-            {
-                <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe img-responsive">
-                    <table border="0" style="cursor: pointer;">
-                        <tr>
-                            <td>
-                                <a asp-area="" asp-route-id="@Model[index_0].ID" asp-controller="Artist" asp-action="Details"><img src="@Model[index_0].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="tdName">@Model[index_0].Name</span>
-                            </td>
+        <div class="row" style="margin-top: 50px;">
+            @if (index_0 < Model.Count)
+        {
+            <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe img-responsive">
 
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="tdCountry">@Model[index_0].Country</span>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-        }
+                <table border="0" style="cursor: pointer;">
 
-                @if (index_1 < Model.Count)
-            {
-                <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                    <table border="0" style=" cursor: pointer">
-                        <tr>
-                            <td>
-                                <a asp-area="" asp-route-id="@Model[index_1].ID" asp-controller="Artist" asp-action="Details"><img src="@Model[index_1].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="tdName">@Model[index_1].Name</span>
-                            </td>
+                    <tr>
+                        <td>
+                            <a asp-area="" asp-route-id="@Model[index_0].ID" asp-controller="Artist" asp-action="Details"><img src="@Model[index_0].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="tdName">@Model[index_0].Name</span>
+                        </td>
 
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="tdCountry">@Model[index_1].Country</span>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-        }
-
-                @if (index_2 < Model.Count)
-            {
-                <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                    <table border="0" style=" cursor: pointer">
-                        <tr>
-                            <td>
-                                <a asp-area="" asp-route-id="@Model[index_2].ID" asp-controller="Artist" asp-action="Details"><img src="@Model[index_2].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="tdName">@Model[index_2].Name</span>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="tdCountry">@Model[index_2].Country</span>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-        }
-
-                @if (index_3 < Model.Count)
-            {
-                <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
-                    <table border="0" style=" cursor: pointer">
-                        <tr>
-                            <td>
-                                <a asp-area="" asp-route-id="@Model[index_3].ID" asp-controller="Artist" asp-action="Details"><img src="@Model[index_3].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="tdName">@Model[index_3].Name</span>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="tdCountry">@Model[index_3].Country</span>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-        }
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="tdCountry">@Model[index_0].Country</span>
+                        </td>
+                    </tr>
+                </table>
             </div>
     }
+
+            @if (index_1 < Model.Count)
+        {
+            <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
+                <table border="0" style=" cursor: pointer">
+
+                    <tr>
+                        <td>
+                            <a asp-area="" asp-route-id="@Model[index_1].ID" asp-controller="Artist" asp-action="Details"><img src="@Model[index_1].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="tdName">@Model[index_1].Name</span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="tdCountry">@Model[index_1].Country</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+    }
+
+            @if (index_2 < Model.Count)
+        {
+            <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
+                <table border="0" style=" cursor: pointer">
+
+                    <tr>
+                        <td>
+                            <a asp-area="" asp-route-id="@Model[index_2].ID" asp-controller="Artist" asp-action="Details"><img src="@Model[index_2].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="tdName">@Model[index_2].Name</span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="tdCountry">@Model[index_2].Country</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+    }
+
+            @if (index_3 < Model.Count)
+        {
+            <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe">
+                <table border="0" style=" cursor: pointer">
+
+                    <tr>
+                        <td>
+                            <a asp-area="" asp-route-id="@Model[index_3].ID" asp-controller="Artist" asp-action="Details"><img src="@Model[index_3].ImageLink" class="img-responsive" style="width: auto; height: auto; max-width: 275px; max-height: 150px;"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="tdName">@Model[index_3].Name</span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="tdCountry">@Model[index_3].Country</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+    }
+        </div>
+}
 }
 else
 {

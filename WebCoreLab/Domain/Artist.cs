@@ -12,6 +12,7 @@ namespace WebCoreLab.Domain
         public int ID { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
+        public int YearOfBirth { get; set; }
         public string Description { get; set; }
         public virtual string ImageLink { get; set; }
 

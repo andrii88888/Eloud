@@ -13,6 +13,7 @@ namespace WebCoreLab.Data
     {
         public virtual DbSet<Festival> Festivals { get; set; }
         public DbSet<Artist> Artists { get; set; }
+        //public DbSet<LineUp> LineUps { get; set; }
         public DbSet<ViewUserEvent> ViewUserEvent { get; set; }
         public DbSet<Subscribtion> Subscribers { get; set; }
 

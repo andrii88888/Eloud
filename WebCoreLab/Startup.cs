@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebCoreLab.Data;
 using WebCoreLab.Models;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace WebCoreLab
 {
@@ -34,6 +36,11 @@ namespace WebCoreLab
 
             // Add application services.
             //services.AddTransient<IEmailSender, EmailSender>();
+            services.AddLocalization(o =>
+            {
+                // We will put our translations in a folder called Resources
+                o.ResourcesPath = "Resources";
+            });
 
             services.AddMvc();
         }
@@ -55,6 +62,19 @@ namespace WebCoreLab
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            IList<CultureInfo> supportedCultures = new List<CultureInfo>
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("uk-UA"),
+            };
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("uk-UA"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
 
             app.UseMvc(routes =>
             {

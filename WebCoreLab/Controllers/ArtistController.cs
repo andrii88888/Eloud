@@ -10,26 +10,45 @@ using Microsoft.AspNetCore.Identity;
 using WebCoreLab.Models;
 using System.Net.Mail;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace WebCoreLab.Controllers
 {
 
     public class ArtistController : BaseController
     {
-        public ArtistController(ApplicationDbContext _context) : base(_context) {}
+        public ArtistController(ApplicationDbContext _context) : base(_context) { }
 
         [HttpGet]
-        public async Task<IActionResult> ArtistsVariety(string searchString)
+        public async Task<IActionResult> ArtistsVariety(string sortOrder, string searchString)
         {
             ViewData["Message"] = "ArtistsVariety";
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+                      
             ViewData["CurrentFilter"] = searchString;
             var artists = from s in context.Artists
                           select s;
-            if (!String.IsNullOrEmpty(searchString))
+            
+
+
+           
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    artists = artists.Where(s => s.Name.Contains(searchString)
+                                           || s.Country.Contains(searchString)
+                                           || (Regex.IsMatch(searchString, @"^\d+$") && s.YearOfBirth.Equals(Convert.ToInt32(searchString))));
+                }
+
+            switch (sortOrder)
             {
-                artists = artists.Where(s => s.Name.Contains(searchString)
-                                       || s.Country.Contains(searchString));
+                case "name_desc":
+                    artists = artists.OrderByDescending(s => s.Name);
+                    break;
+                default:
+                    artists = artists.OrderBy(s => s.Name);
+                    break;
             }
+
 
             List<Artist> list = await artists.AsNoTracking().ToListAsync();
             

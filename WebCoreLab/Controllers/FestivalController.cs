@@ -12,14 +12,17 @@ using WebCoreLab.Models;
 
 namespace WebCoreLab.Controllers
 {
-    [Authorize(Roles = "admin")]
+   
     public class FestivalController : BaseController
     {
         public FestivalController(ApplicationDbContext _context) : base(_context) { }
 
         [HttpGet]
-        public async Task<IActionResult> list(string searchString)
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> list(string sortOrder, string searchString)
         {
+            
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["CurrentFilter"] = searchString;
             var fests = from s in context.Festivals
                            select s;
@@ -30,13 +33,23 @@ namespace WebCoreLab.Controllers
                                        || s.City.Contains(searchString));
             }
 
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    fests = fests.OrderByDescending(s => s.Name);
+                    break;
+                default:
+                    fests = fests.OrderBy(s => s.Name);
+                    break;
+            }
+
             return View(await fests.AsNoTracking().ToListAsync());
         }
 
         [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
-            
+
             if (id == null)
             {
                 return NotFound();
@@ -44,7 +57,7 @@ namespace WebCoreLab.Controllers
 
             registerView(id);
 
-            var festival = await context.Festivals.Include(s => s.LineUps).ThenInclude(a=> a.Artist)
+            var festival = await context.Festivals.Include(s => s.LineUps).ThenInclude(a => a.Artist)
                 .AsNoTracking().SingleOrDefaultAsync(m => m.Id == id);
 
             if (festival == null)
@@ -64,6 +77,7 @@ namespace WebCoreLab.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public IActionResult edit(long? id)
         {
             Festival festival = id.HasValue ? context.Festivals.FirstOrDefault(x => x.Id == id.Value) :
@@ -71,8 +85,18 @@ namespace WebCoreLab.Controllers
 
             return View(festival);
         }
-        
+
+        //[HttpGet]
+        //public IActionResult editLineUp(long? id)
+        //{
+        //    LineUp festival = id.HasValue ? context.LineUps.FirstOrDefault(x => x.LineUpID == id.Value) :
+        //                                      new LineUp() {};
+
+        //    return View(festival);
+        //}
+
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult edit(Festival model)
         {
             try
@@ -114,6 +138,7 @@ namespace WebCoreLab.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult remove(Festival model)
         {
             List<Festival> list = context.Festivals.ToList();

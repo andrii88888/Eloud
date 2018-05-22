@@ -30,7 +30,7 @@
     }
 </div>
 }
-<div class="artist-info" style="text-align: right;margin-right: 150px; margin-top: -410px;margin-bottom: 200px">
+<div class="artist-info" style="text-align: right;margin-right: 150px; margin-top: -375px;margin-bottom: 200px">
     <dl>
         <dt>
             @Html.DisplayNameFor(model => model.Artist.Name)
@@ -49,6 +49,10 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Artist.Description)
+        </dd>
+        <dt>Years</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Artist.YearOfBirth)
         </dd>
 
         @*<dt>

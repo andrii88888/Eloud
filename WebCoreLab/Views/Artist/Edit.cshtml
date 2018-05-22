@@ -10,39 +10,45 @@
         <div class="panel-heading">Artist</div>
         <div class="panel-body bio-graph-info">
             @using (Html.BeginForm("edit", "Artist", FormMethod.Post, new { @class = "form-horizontal" }))
-            {
-                @Html.HiddenFor(x => x.ID)
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Name</label>
-                    <div class="col-lg-6">
-                        @Html.TextBoxFor(x => x.Name, null, new { @class = "form-control", @placeholder = "Name" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Country</label>
-                    <div class="col-lg-6">
-                        @Html.TextBoxFor(x => x.Country, null, new { @class = "form-control", @placeholder = "Country" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Description</label>
-                    <div class="col-lg-6">
-                        @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @placeholder = "Description" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">ImageLink</label>
-                    <div class="col-lg-6">
-                        @Html.TextBoxFor(x => x.ImageLink, new { @class = "form-control", @placeholder = "ImageLink" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("List", "Artist")'">Back</button>
-                    </div>
-                </div>
-            }
+    {
+        @Html.HiddenFor(x => x.ID)
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Name</label>
+            <div class="col-lg-6">
+                @Html.TextBoxFor(x => x.Name, null, new { @class = "form-control", @placeholder = "Name" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Country</label>
+            <div class="col-lg-6">
+                @Html.TextBoxFor(x => x.Country, null, new { @class = "form-control", @placeholder = "Country" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Description</label>
+            <div class="col-lg-6">
+                @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @placeholder = "Description" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">ImageLink</label>
+            <div class="col-lg-6">
+                @Html.TextBoxFor(x => x.YearOfBirth, new { @class = "form-control", @placeholder = "Year" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">ImageLink</label>
+            <div class="col-lg-6">
+                @Html.TextBoxFor(x => x.ImageLink, new { @class = "form-control", @placeholder = "ImageLink" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("List", "Artist")'">Back</button>
+            </div>
+        </div>
+}
         </div>
     </section>
 </div>
